@@ -1,22 +1,21 @@
-import {
-  profile,
-  about,
-  skills,
-  projects,
-  experience,
-} from "./content";
+import ThemeToggle from "./theme-toggle";
+
+import { profile, about, skills, projects, experience, education } from "./content";
 
 export default function Home() {
-  const featured = projects.find((p) => p.featured);
-  const rest = projects.filter((p) => p !== featured);
+  const featured = projects.filter((p) => p.featured);
+  const rest = projects.filter((p) => !p.featured);
 
   return (
     <main className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
       {/* ---------- HERO ---------- */}
       <header className="mb-24">
-        <p className="font-mono text-sm text-[var(--accent)] mb-4">
-          ~/{profile.role.toLowerCase().replace(/\s+/g, "-")}
-        </p>
+        <div className="flex items-center justify-between mb-4">
+          <p className="font-mono text-sm text-[var(--accent)]">
+            ~/{profile.role.toLowerCase().replace(/\s+/g, "-")}
+          </p>
+          <ThemeToggle />
+        </div>
         <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight leading-[1.05]">
           {profile.name}
         </h1>
@@ -81,29 +80,35 @@ export default function Home() {
 
       {/* ---------- PROJECTS ---------- */}
       <Section label="projects">
-        {featured && (
-          <article className="mb-10 rounded-lg border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8">
-          <div className="flex items-baseline justify-between gap-4">
+        {featured.map((f) => (
+          <article
+            key={f.title}
+              className="mb-10 rounded-lg border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8"
+            >
+            <div className="flex items-baseline justify-between gap-4">
               <div>
                 <span className="inline-flex items-center gap-1.5 mb-3 rounded-full border border-[var(--featured)] px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-[var(--featured)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[var(--featured)]" />
-                  featured
-                </span>
-                <h3 className="text-2xl font-semibold tracking-tight">
-                  {featured.title}
-                </h3>
+                    featured
+                  </span>
+                  <h3 className="text-2xl font-semibold tracking-tight">
+                    {f.title}
+                  </h3>
               </div>
-              <span className="font-mono text-sm text-[var(--muted)] shrink-0">
-                {featured.year}
-              </span>
+                <span className="font-mono text-sm text-[var(--muted)] shrink-0">
+                  {f.year}
+                </span>
             </div>
-            <p className="mt-3 text-[var(--muted)] leading-relaxed">
-              {featured.blurb}
-            </p>
-            <TechRow tech={featured.tech} />
-            <LinkRow links={featured.links} />
+              <p className="mt-3 text-[var(--muted)] leading-relaxed">
+                {f.blurb}
+              </p>
+              <TechRow tech={f.tech} />
+              <LinkRow links={f.links} />
+              <p className="mt-3 text-[var(--muted)] leading-relaxed">
+                {f.notes}
+              </p>
           </article>
-        )}
+        ))}
 
         <ul className="divide-y divide-[var(--line)]">
           {rest.map((p) => (
@@ -121,6 +126,11 @@ export default function Home() {
               </p>
               <TechRow tech={p.tech} />
               <LinkRow links={p.links} />
+              {p.notes && (
+                <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
+                  {p.notes}
+                </p>
+              )}
             </li>
           ))}
         </ul>
@@ -146,6 +156,35 @@ export default function Home() {
                     </span>
                   </p>
                   <p className="text-[var(--muted)] mt-1">{e.note}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </Section>
+      )}
+
+      {/* ---------- EDUCATION ---------- */}
+      {education.length > 0 && (
+        <Section label="education">
+          <ul className="space-y-6">
+            {education.map((ed) => (
+              <li
+                key={ed.school}
+                className="flex flex-col sm:flex-row sm:gap-8"
+              >
+                <span className="font-mono text-sm text-[var(--muted)] sm:w-36 shrink-0 mb-1 sm:mb-0">
+                  {ed.period}
+                </span>
+                <div>
+                  <p className="font-medium">
+                    {ed.degree}{" "}
+                    <span className="text-[var(--muted)]">
+                      · {ed.school}
+                    </span>
+                  </p>
+                  {ed.note && (
+                    <p className="text-[var(--muted)] mt-1">{ed.note}</p>
+                  )}
                 </div>
               </li>
             ))}

@@ -11,15 +11,26 @@
   --featured: #d9a521;
 }
 
-@theme inline {
+.dark {
+  --bg: #14130f;
+  --ink: #ececde;
+  --muted: #9a978c;
+  --line: #2c2a24;
+  --accent: #ffffff;
+  --accent-soft: #3a241d;
+  --featured: #e0b341;
+  --card: #1c1a15;
+}
+
+@theme {
   --color-bg: var(--bg);
   --color-ink: var(--ink);
   --color-muted: var(--muted);
   --color-line: var(--line);
   --color-accent: var(--accent);
   --color-card: var(--card);
-  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
   --color-featured: var(--featured);
+  --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
 }
 
 * { box-sizing: border-box; }
