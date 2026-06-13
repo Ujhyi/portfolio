@@ -5,9 +5,10 @@
   --ink: #1a1a18;
   --muted: #6b6a64;
   --line: #e3e1d8;
-  --accent: #c8492e;
+  --accent: #000000;
   --accent-soft: #f4e6e1;
   --card: #ffffff;
+  --featured: #d9a521;
 }
 
 @theme inline {
@@ -18,6 +19,7 @@
   --color-accent: var(--accent);
   --color-card: var(--card);
   --font-mono: ui-monospace, "SF Mono", "JetBrains Mono", Menlo, monospace;
+  --color-featured: var(--featured);
 }
 
 * { box-sizing: border-box; }

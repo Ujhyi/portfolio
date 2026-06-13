@@ -1,37 +1,28 @@
-// ============================================================
-//  EDIT THIS FILE TO CUSTOMIZE YOUR PORTFOLIO
-//  Everything the site displays comes from here.
-// ============================================================
-
 export const profile = {
-  name: "Your Name",
-  role: "Software Engineer", // e.g. "Full-Stack Developer", "DevOps Engineer"
-  // One or two sentences. Your pitch — what you do and what you care about.
+  name: "David Ujhelyi",
+  role: "devops Engineer", 
   tagline:
-    "I build reliable web applications and tooling. I care about clean systems, good developer experience, and shipping things that hold up in production.",
+    "Engineer working across IT infrastructure and platform operations, focused on keeping systems reliable at scale. I also build AI-powered proof-of-concepts to explore what's next.",
   location: "City, Country",
-  email: "you@example.com",
-  // Set any of these to "" to hide the link.
+  email: "david.ujh@gmail.com",
   socials: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    resume: "/resume.pdf", // put a resume.pdf in the /public folder, or set to ""
+    github: "https://github.com/Ujhyi",
+    linkedin: "https://sk.linkedin.com/in/d%C3%A1vid-ujhelyi",
+    resume: "/resume.pdf", 
   },
 };
 
 // A short "about" paragraph. Keep it human.
 export const about =
-  "I'm a developer with a few years in the IT industry, focused on backend and full-stack work. I enjoy untangling messy problems, automating the boring parts, and learning whatever the job needs. Outside of work I tinker with side projects and contribute to open source.";
+  "I'm an early-career engineer working across infrastructure, operations, and development. I enjoy untangling messy problems, automating the boring parts, and learning whatever the job needs. Outside of work I tinker with side projects and contribute to open source.";
 
-// Group your skills however you like. Add or remove groups freely.
 export const skills: { group: string; items: string[] }[] = [
-  { group: "Languages", items: ["TypeScript", "Python", "Go", "SQL"] },
+  { group: "Languages", items: ["Python", "Java", "C", "TypeScript"] },
   { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  { group: "Backend", items: ["Node.js", "PostgreSQL", "REST", "Docker"] },
-  { group: "Tools", items: ["Git", "Linux", "CI/CD", "AWS"] },
+  { group: "Backend", items: ["Spring Boot", "REST", "PostgreSQL", "Oracle SQL"] },
+  { group: "Infrastructure", items: ["Kubernetes", "Docker", "CI/CD", "GCP", "Linux", "Git"] },
 ];
 
-// Your projects. The first one with `featured: true` gets a bigger treatment.
 export type Project = {
   title: string;
   year: string;
@@ -56,13 +47,15 @@ export const projects: Project[] = [
   },
   {
     title: "Project Two",
-    year: "2024",
+    year: "2025",
     blurb:
-      "What it is, why you built it, and what was interesting or hard about it. One or two sentences is plenty.",
-    tech: ["Python", "FastAPI", "Redis"],
+      "A short, concrete description of what it does and the problem it solves. Mention scale or impact if you can — users, requests, time saved.",
+    tech: ["Next.js", "PostgreSQL", "Docker"],
     links: [
-      { label: "Code", href: "https://github.com/yourusername/project-two" },
+      { label: "Live", href: "https://example.com" },
+      { label: "Code", href: "https://github.com/yourusername/project-one" },
     ],
+    featured: true,
   },
   {
     title: "Project Three",
@@ -79,20 +72,34 @@ export const projects: Project[] = [
 // Optional: work history. Set to [] to hide the section entirely.
 export const experience: {
   role: string;
+  type: string;
   company: string;
+  city: string;
   period: string;
   note: string;
 }[] = [
   {
-    role: "Software Engineer",
-    company: "Company Name",
-    period: "2023 — Present",
-    note: "One line on what you do or shipped here.",
+    role: "Development and Operations",
+    type: "full-time",
+    company: "Triton Digital",
+    city: "Bratislava",
+    period: "2025 — Present",
+    note: "External engineer for Slovak Telecom, focused on developing and automating OTT TV platform services alongside day-to-day operations.",
   },
   {
-    role: "Junior Developer",
-    company: "Earlier Company",
-    period: "2021 — 2023",
-    note: "One line on your impact or growth.",
+    role: "Trainee TV Specialist",
+    type: "part-time",
+    company: "Slovak Telecom",
+    city: "Bratislava",
+    period: "2024 — 2025",
+    note: "Operating and developing OTT TV services — administration, configuration, monitoring, and troubleshooting of production systems, with security and AI integration as part of daily work.",
+  },
+  {
+    role: "ICT Administrator",
+    type: "part-time",
+    company: "Deatusche Telekom IT Solution ",
+    city: "Kosice",
+    period: "2023 — 2024",
+    note: "Independently managed change and incident tickets (ITIL-based) to keep services within SLAs across Azure, VMware, and RHEL/CentOS environments.",
   },
 ];

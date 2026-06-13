@@ -83,10 +83,16 @@ export default function Home() {
       <Section label="projects">
         {featured && (
           <article className="mb-10 rounded-lg border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8">
-            <div className="flex items-baseline justify-between gap-4">
-              <h3 className="text-2xl font-semibold tracking-tight">
-                {featured.title}
-              </h3>
+          <div className="flex items-baseline justify-between gap-4">
+              <div>
+                <span className="inline-flex items-center gap-1.5 mb-3 rounded-full border border-[var(--featured)] px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-[var(--featured)]">
+                  <span className="h-1.5 w-1.5 rounded-full bg-[var(--featured)]" />
+                  featured
+                </span>
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  {featured.title}
+                </h3>
+              </div>
               <span className="font-mono text-sm text-[var(--muted)] shrink-0">
                 {featured.year}
               </span>
@@ -128,11 +134,16 @@ export default function Home() {
               <li key={e.company} className="flex flex-col sm:flex-row sm:gap-8">
                 <span className="font-mono text-sm text-[var(--muted)] sm:w-36 shrink-0 mb-1 sm:mb-0">
                   {e.period}
+                  <span className="block text-xs opacity-70 mt-0.5">
+                    {e.type}
+                  </span>
                 </span>
                 <div>
                   <p className="font-medium">
                     {e.role}{" "}
-                    <span className="text-[var(--muted)]">· {e.company}</span>
+                    <span className="text-[var(--muted)]">
+                      · {e.company} · {e.city}
+                    </span>
                   </p>
                   <p className="text-[var(--muted)] mt-1">{e.note}</p>
                 </div>
@@ -172,8 +183,8 @@ function Section({
 }) {
   return (
     <section className="mb-24">
-      <h2 className="font-mono text-xs uppercase tracking-[0.2em] text-[var(--accent)] mb-6 flex items-center gap-3">
-        {label}
+      <h2 className="font-mono text-xs tracking-[0.2em] text-[var(--accent)] mb-6 flex items-center gap-3">
+        ~/{label}
         <span className="h-px flex-1 bg-[var(--line)]" />
       </h2>
       {children}
