@@ -2,6 +2,9 @@ import ThemeToggle from "./theme-toggle";
 
 import { profile, about, skills, projects, experience, education } from "./content";
 
+const linkClass =
+  "text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors";
+
 export default function Home() {
   const featured = projects.filter((p) => p.featured);
   const rest = projects.filter((p) => !p.featured);
@@ -24,24 +27,36 @@ export default function Home() {
         </p>
 
         <nav className="mt-8 flex flex-wrap gap-x-5 gap-y-2 font-mono text-sm">
-          <a
-            href={`mailto:${profile.email}`}
-            className="text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors"
-          >
+          <a href={`mailto:${profile.email}`} className={linkClass}>
             email
           </a>
           {profile.socials.github && (
-            <a href={profile.socials.github} className="text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors">
+            <a
+              href={profile.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
               github
             </a>
           )}
           {profile.socials.linkedin && (
-            <a href={profile.socials.linkedin} className="text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors">
+            <a
+              href={profile.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
               linkedin
             </a>
           )}
           {profile.socials.resume && (
-            <a href={profile.socials.resume} className="text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors">
+            <a
+              href={profile.socials.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
               resume
             </a>
           )}
@@ -83,36 +98,41 @@ export default function Home() {
         {featured.map((f) => (
           <article
             key={f.title}
-              className="mb-10 rounded-lg border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8"
-            >
+            className="mb-10 rounded-lg border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8"
+          >
             <div className="flex items-baseline justify-between gap-4">
               <div>
                 <span className="inline-flex items-center gap-1.5 mb-3 rounded-full border border-[var(--featured)] px-2.5 py-0.5 font-mono text-xs font-medium tracking-wider text-[var(--featured)]">
                   <span className="h-1.5 w-1.5 rounded-full bg-[var(--featured)]" />
-                    featured
-                  </span>
-                  <h3 className="text-2xl font-semibold tracking-tight">
-                    {f.title}
-                  </h3>
-              </div>
-                <span className="font-mono text-sm text-[var(--muted)] shrink-0">
-                  {f.year}
+                  featured
                 </span>
+                <h3 className="text-2xl font-semibold tracking-tight">
+                  {f.title}
+                </h3>
+              </div>
+              <span className="font-mono text-sm text-[var(--muted)] shrink-0">
+                {f.year}
+              </span>
             </div>
-              <p className="mt-3 text-[var(--muted)] leading-relaxed">
-                {f.blurb}
-              </p>
-              <TechRow tech={f.tech} />
-              <LinkRow links={f.links} />
-              <p className="mt-3 text-[var(--muted)] leading-relaxed">
+            <p className="mt-3 text-[var(--muted)] leading-relaxed">
+              {f.blurb}
+            </p>
+            <TechRow tech={f.tech} />
+            <LinkRow links={f.links} />
+            {f.notes && (
+              <p className="mt-3 text-sm text-[var(--muted)] leading-relaxed">
                 {f.notes}
               </p>
+            )}
           </article>
         ))}
 
-        <ul className="divide-y divide-[var(--line)]">
+        <ul className="space-y-6">
           {rest.map((p) => (
-            <li key={p.title} className="py-6 first:pt-0">
+            <li
+              key={p.title}
+              className="rounded-lg border border-[var(--line)] bg-[var(--card)] p-6 sm:p-8"
+            >
               <div className="flex items-baseline justify-between gap-4">
                 <h3 className="text-xl font-semibold tracking-tight">
                   {p.title}
@@ -141,7 +161,10 @@ export default function Home() {
         <Section label="experience">
           <ul className="space-y-6">
             {experience.map((e) => (
-              <li key={e.company} className="flex flex-col sm:flex-row sm:gap-8">
+              <li
+                key={`${e.company}-${e.period}`}
+                className="flex flex-col sm:flex-row sm:gap-8"
+              >
                 <span className="font-mono text-sm text-[var(--muted)] sm:w-36 shrink-0 mb-1 sm:mb-0">
                   {e.period}
                   <span className="block text-xs opacity-70 mt-0.5">
@@ -169,7 +192,7 @@ export default function Home() {
           <ul className="space-y-6">
             {education.map((ed) => (
               <li
-                key={ed.school}
+                key={`${ed.school}-${ed.period}`}
                 className="flex flex-col sm:flex-row sm:gap-8"
               >
                 <span className="font-mono text-sm text-[var(--muted)] sm:w-36 shrink-0 mb-1 sm:mb-0">
@@ -178,9 +201,7 @@ export default function Home() {
                 <div>
                   <p className="font-medium">
                     {ed.degree}{" "}
-                    <span className="text-[var(--muted)]">
-                      · {ed.school}
-                    </span>
+                    <span className="text-[var(--muted)]">· {ed.school}</span>
                   </p>
                   {ed.note && (
                     <p className="text-[var(--muted)] mt-1">{ed.note}</p>
@@ -245,15 +266,19 @@ function LinkRow({ links }: { links: { label: string; href: string }[] }) {
   if (!links.length) return null;
   return (
     <div className="mt-4 flex flex-wrap gap-4 font-mono text-sm">
-      {links.map((l) => (
-        <a
-          key={l.href}
-          href={l.href}
-          className="text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors"
-        >
-          {l.label} ↗
-        </a>
-      ))}
+      {links.map((l) => {
+        const external = /^https?:\/\//.test(l.href);
+        return (
+          <a
+            key={l.label}
+            href={l.href}
+            {...(external && { target: "_blank", rel: "noopener noreferrer" })}
+            className={linkClass}
+          >
+            {l.label} ↗
+          </a>
+        );
+      })}
     </div>
   );
 }

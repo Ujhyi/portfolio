@@ -1,0 +1,88 @@
+/*
+  Spendlio's theme, scoped to the demo wrapper (.spendlio) so it never
+  touches the portfolio's own CSS variables. Copied from spendlio-web/src/app/globals.css.
+*/
+
+.spendlio {
+  --bg: #F2F2F5;
+  --surface: #FFFFFF;
+  --surface-2: #F7F7F9;
+  --ink: #101114;
+  --muted: #75777E;
+  --line: #E7E7EA;
+  --accent: #6C4CFF;
+  --accent-soft: #EEE9FF;
+  --danger: #E5484D;
+  --danger-soft: #FDEAEA;
+  /* = rounded-xl2 from Spendlio's tailwind.config — change if yours differs */
+  --radius-xl2: 16px;
+  color-scheme: light;
+
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--sp-font-sans), ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.spendlio.sp-dark {
+  --bg: #0A0A0C;
+  --surface: #151519;
+  --surface-2: #1C1C21;
+  --ink: #F5F5F7;
+  --muted: #8D8F97;
+  --line: #29292F;
+  --accent: #8C74FF;
+  --accent-soft: #241F3D;
+  --danger: #FF6B70;
+  --danger-soft: #341C1E;
+  color-scheme: dark;
+}
+
+/* font-display */
+.spendlio .sp-display {
+  font-family: var(--sp-font-display), var(--sp-font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* .card */
+.spendlio .sp-card {
+  background: var(--surface);
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  box-shadow: 0 1px 2px rgba(16, 17, 20, 0.04), 0 8px 24px rgba(16, 17, 20, 0.04);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.spendlio.sp-dark .sp-card {
+  box-shadow: none;
+}
+
+.spendlio input,
+.spendlio textarea,
+.spendlio select {
+  color: var(--ink);
+  font-family: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+.spendlio input:focus,
+.spendlio textarea:focus,
+.spendlio select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.spendlio input::placeholder,
+.spendlio textarea::placeholder {
+  color: var(--muted);
+}
+
+.spendlio.sp-dark input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.9);
+}
+
+.spendlio ::selection {
+  background: var(--accent-soft);
+}
