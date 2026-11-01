@@ -1,6 +1,6 @@
 export const profile = {
   name: "David Ujhelyi",
-  role: "DevOps Engineer",
+  role: "it Engineer",
   tagline:
     "Engineer working across IT infrastructure and platform operations, focused on keeping systems reliable at scale. I also build AI-powered proof-of-concepts to explore what's next.",
   location: "Bratislava, Slovakia",
@@ -8,19 +8,23 @@ export const profile = {
   socials: {
     github: "https://github.com/Ujhyi",
     linkedin: "https://sk.linkedin.com/in/d%C3%A1vid-ujhelyi",
-    resume: "/resume.pdf",
+    resume: "../resume/resumeDU_2026.pdf",
   },
 };
 
 // A short "about" paragraph. Keep it human.
 export const about =
-  "I'm an early-career engineer working across infrastructure, operations, and development. I enjoy untangling messy problems, automating the boring parts, and learning whatever the job needs. Outside of work I tinker with side projects and contribute to open source.";
+  "I’m a DevOps engineer working on Slovak Telekom’s internet TV platform, mostly with Linux, Kubernetes, ArgoCD and GitLab, plus building AI features like custom models and MCP servers. I like untangling messy problems, automating the boring parts, and learning whatever the job needs.";
 
 export const skills: { group: string; items: string[] }[] = [
-  { group: "Languages", items: ["Python", "Java", "C", "TypeScript"] },
-  { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  { group: "Backend", items: ["Spring Boot", "REST", "PostgreSQL", "Oracle SQL"] },
-  { group: "Infrastructure", items: ["Kubernetes", "Docker", "CI/CD", "GCP", "Linux", "Git"] },
+  { group: "DevOps", items: ["Kubernetes", "ArgoCD", "GitLab CI/CD", "Git", "Docker"] },
+  { group: "Linux & Infrastructure", items: ["Rocky Linux", "RHEL", "CentOS", "VMware"] },
+  { group: "Cloud", items: ["Microsoft Azure", "GCP", "Firebase"] },
+  { group: "AI", items: ["Model training", "MCP servers"] },
+  { group: "Monitoring", items: ["Elasticsearch", "Kibana", "Zabbix"] },
+  { group: "Databases", items: ["Oracle Database", "PostgreSQL", "SQL"] },
+  { group: "Languages", items: ["Python", "Java", "TypeScript", "C"] },
+  { group: "Frameworks", items: ["React", "Next.js", "Tailwind CSS", "Spring Boot", "REST"] },
 ];
 
 export type Project = {
@@ -55,10 +59,36 @@ export const projects: Project[] = [
     links: [
       { label: "Live demo", href: "/demo/spendlio" },
       { label: "Frontend", href: "/not-found" },
-      { label: "Backend", href: "/not-found" },
+      { label: "Backend", href: "https://github.com/Ujhyi/spendlio" },
     ],
     featured: true,
     notes: "*the live demo runs in the browser on sample data with simulated AI - production deployment in progress",
+  },
+  {
+    title: "Rental marketplace backend",
+    year: "2026",
+    blurb:
+      "Microservice backend for a platform for renting apartments, rooms, houses, garages and parking spots. Four independent Spring Boot services, each with its own PostgreSQL database, communicate through Apache Kafka. Landlords publish listings with photos stored in Google Cloud Storage, tenants save favourites, book viewings and chat with landlords in real time over WebSocket (STOMP). Includes JWT auth with refresh tokens, email verification and password reset, appointment confirmation flow, scheduled email reminders and unread-message digests, automatic listing expiry, an admin control panel, Swagger API docs and Docker-based deployment.",
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "Spring Data JPA",
+      "PostgreSQL",
+      "Flyway",
+      "Apache Kafka",
+      "WebSocket",
+      "STOMP",
+      "JWT",
+      "Google Cloud Storage",
+      "Swagger",
+      "Docker",
+    ],
+    links: [
+      { label: "Code", href: "https://github.com/Ujhyi/dwelio-backend" },
+    ],
+    featured: true,
+    notes: "**my github repo is currently in private state - just ping me to reveal"
   },
   {
     title: "ASP .NET web service providing sorted information about display devices items of an electronic store",
@@ -67,7 +97,6 @@ export const projects: Project[] = [
       "The goal of this master's thesis was to explore the use of ASP.NET XML Web Services, design and implement a custom solution for a business manager with display technology to easily access organized information. The system provides organized information on display equipment counts, inventory, units sold, enhanced with other possible functionalities.",
     tech: ["ASP .NET", "XML", "React", "TypeScript", "Vite"],
     links: [
-      { label: "Live", href: "/not-found" },
       { label: "Frontend", href: "https://github.com/Ujhyi/react-dp-prod" },
       { label: "Backend", href: "https://github.com/Ujhyi/MDeg_Project" },
     ],
@@ -85,7 +114,7 @@ export const projects: Project[] = [
     ],
     featured: false,
     notes: "*my github repo is currently in private state - just ping me to reveal",
-  },
+  }, /*
   {
     title: "TBD ...",
     year: "TBD...",
@@ -98,41 +127,46 @@ export const projects: Project[] = [
     featured: false,
     notes: "TBD...",
   },
+  */
 ];
 
 export const experience: {
   role: string;
   type: string;
   company: string;
+  country: string;
   city: string;
   period: string;
   note: string;
 }[] = [
-  {
-    role: "Development and Operations",
-    type: "full-time",
-    company: "Triton Digital",
-    city: "Bratislava",
-    period: "2025 — Present",
-    note: "External engineer for Slovak Telecom, focused on developing and automating OTT TV platform services alongside day-to-day operations & developing AI improvements and PoC.",
-  },
-  {
-    role: "Trainee TV Specialist",
-    type: "part-time",
-    company: "Slovak Telecom",
-    city: "Bratislava",
-    period: "2024 — 2025",
-    note: "Operating and developing OTT TV services — administration, configuration, monitoring, and troubleshooting of production systems, with security and AI integration as part of daily work.",
-  },
-  {
-    role: "ICT Administrator",
-    type: "part-time",
-    company: "Deutsche Telekom IT Solutions",
-    city: "Košice",
-    period: "2023 — 2024",
-    note: "Independently managed change and incident tickets (ITIL-based) to keep services within SLAs across Azure, VMware, and RHEL/CentOS environments.",
-  },
-];
+    {
+      role: "Development and Operations",
+      type: "full-time",
+      company: "Triton Digital",
+      country: "Slovakia",
+      city: "Bratislava",
+      period: "2025 — Present",
+      note: "External engineer for Slovak Telecom, focused on developing and automating OTT TV platform services alongside day-to-day operations & developing AI improvements and PoC.",
+    },
+    {
+      role: "Trainee TV Specialist",
+      type: "part-time",
+      company: "Slovak Telecom",
+      country: "Slovakia",
+      city: "Bratislava",
+      period: "2024 — 2025",
+      note: "Operating and developing OTT TV services — administration, configuration, monitoring, and troubleshooting of production systems, with security and AI integration as part of daily work.",
+    },
+    {
+      role: "ICT Administrator",
+      type: "part-time",
+      company: "Deutsche Telekom IT Solutions",
+      country: "Slovakia",
+      city: "Košice",
+      period: "2023 — 2024",
+      note: "Independently managed change and incident tickets (ITIL-based) to keep services within SLAs across Azure, VMware, and RHEL/CentOS environments.",
+    },
+  ];
 
 export const education: {
   school: string;
@@ -140,16 +174,16 @@ export const education: {
   period: string;
   note?: string;
 }[] = [
-  {
-    school: "University of Economics in Bratislava",
-    degree: "Ing. Information Management",
-    period: "2023 — 2025",
-    note: "Business Intelligence | Software Engineering | Big Data | UX Design | Simulation Models | Project Management | Linear Programming | Distributed Technologies | Machine Learning | Mobile App Development | Information Systems Management",
-  },
-  {
-    school: "Technical University of Košice",
-    degree: "BSc. Business Informatics",
-    period: "2020 — 2023",
-    note: "Algorithms and Programming | Web Development | Database Systems | Mobile Development | Probability and Mathematical Statistics | Data Analytics | Information System Design",
-  },
-];
+    {
+      school: "University of Economics in Bratislava",
+      degree: "Ing. Information Management",
+      period: "2023 — 2025",
+      note: "Business Intelligence | Software Engineering | Big Data | UX Design | Simulation Models | Project Management | Linear Programming | Distributed Technologies | Machine Learning | Mobile App Development | Information Systems Management",
+    },
+    {
+      school: "Technical University of Košice",
+      degree: "BSc. Business Informatics",
+      period: "2020 — 2023",
+      note: "Algorithms and Programming | Web Development | Database Systems | Mobile Development | Probability and Mathematical Statistics | Data Analytics | Information System Design",
+    },
+  ];

@@ -175,7 +175,7 @@ export default function Home() {
                   <p className="font-medium">
                     {e.role}{" "}
                     <span className="text-[var(--muted)]">
-                      · {e.company} · {e.city}
+                      · {e.company} · {e.country} · {e.city}
                     </span>
                   </p>
                   <p className="text-[var(--muted)] mt-1">{e.note}</p>
