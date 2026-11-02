@@ -1,37 +1,32 @@
-// ============================================================
-//  EDIT THIS FILE TO CUSTOMIZE YOUR PORTFOLIO
-//  Everything the site displays comes from here.
-// ============================================================
-
 export const profile = {
-  name: "Your Name",
-  role: "Software Engineer", // e.g. "Full-Stack Developer", "DevOps Engineer"
-  // One or two sentences. Your pitch — what you do and what you care about.
+  name: "David Ujhelyi",
+  role: "it Engineer",
   tagline:
-    "I build reliable web applications and tooling. I care about clean systems, good developer experience, and shipping things that hold up in production.",
-  location: "City, Country",
-  email: "you@example.com",
-  // Set any of these to "" to hide the link.
+    "Engineer working across IT infrastructure and platform operations, focused on keeping systems reliable at scale. I also build AI-powered proof-of-concepts to explore what's next.",
+  location: "Bratislava, Slovakia",
+  email: "david.ujh@gmail.com",
   socials: {
-    github: "https://github.com/yourusername",
-    linkedin: "https://linkedin.com/in/yourusername",
-    resume: "/resume.pdf", // put a resume.pdf in the /public folder, or set to ""
+    github: "https://github.com/Ujhyi",
+    linkedin: "https://sk.linkedin.com/in/d%C3%A1vid-ujhelyi",
+    resume: "../resume/resumeDU_2026.pdf",
   },
 };
 
 // A short "about" paragraph. Keep it human.
 export const about =
-  "I'm a developer with a few years in the IT industry, focused on backend and full-stack work. I enjoy untangling messy problems, automating the boring parts, and learning whatever the job needs. Outside of work I tinker with side projects and contribute to open source.";
+  "I’m a DevOps engineer working on Slovak Telekom’s internet TV platform, mostly with Linux, Kubernetes, ArgoCD and GitLab, plus building AI features like custom models and MCP servers. I like untangling messy problems, automating the boring parts, and learning whatever the job needs.";
 
-// Group your skills however you like. Add or remove groups freely.
 export const skills: { group: string; items: string[] }[] = [
-  { group: "Languages", items: ["TypeScript", "Python", "Go", "SQL"] },
-  { group: "Frontend", items: ["React", "Next.js", "Tailwind CSS"] },
-  { group: "Backend", items: ["Node.js", "PostgreSQL", "REST", "Docker"] },
-  { group: "Tools", items: ["Git", "Linux", "CI/CD", "AWS"] },
+  { group: "DevOps", items: ["Kubernetes", "ArgoCD", "GitLab CI/CD", "Git", "Docker"] },
+  { group: "Linux & Infrastructure", items: ["Rocky Linux", "RHEL", "CentOS", "VMware"] },
+  { group: "Cloud", items: ["Microsoft Azure", "GCP", "Firebase"] },
+  { group: "AI", items: ["Model training", "MCP servers"] },
+  { group: "Monitoring", items: ["Elasticsearch", "Kibana", "Zabbix"] },
+  { group: "Databases", items: ["Oracle Database", "PostgreSQL", "SQL"] },
+  { group: "Languages", items: ["Python", "Java", "TypeScript", "C"] },
+  { group: "Frameworks", items: ["React", "Next.js", "Tailwind CSS", "Spring Boot", "REST"] },
 ];
 
-// Your projects. The first one with `featured: true` gets a bigger treatment.
 export type Project = {
   title: string;
   year: string;
@@ -39,60 +34,156 @@ export type Project = {
   tech: string[];
   links: { label: string; href: string }[];
   featured?: boolean;
+  notes?: string;
 };
 
 export const projects: Project[] = [
   {
-    title: "Project One",
-    year: "2025",
+    title: "Spendlio – AI-powered expense tracker",
+    year: "2026",
     blurb:
-      "A short, concrete description of what it does and the problem it solves. Mention scale or impact if you can — users, requests, time saved.",
-    tech: ["Next.js", "PostgreSQL", "Docker"],
+      "Full-stack expense tracker with AI categorization. Log a purchase in your own words, snap a photo of a receipt, or add it manually. A locally hosted Gemma model (via Ollama) parses the input into individual items and sorts them into categories automatically. Includes budgets with progress tracking, multi-currency support with automatic conversion, JWT auth with rotating refresh tokens, email verification, a history page with filters and charts, dark mode and SK/EN localization.",
+    tech: [
+      "TypeScript",
+      "Fastify",
+      "PostgreSQL",
+      "Drizzle ORM",
+      "Zod",
+      "Ollama",
+      "Gemma",
+      "Next.js",
+      "Tailwind CSS",
+      "Recharts",
+      "Docker",
+    ],
     links: [
-      { label: "Live", href: "https://example.com" },
-      { label: "Code", href: "https://github.com/yourusername/project-one" },
+      { label: "Live demo", href: "/demo/spendlio" },
+      { label: "Frontend", href: "/not-found" },
+      { label: "Backend", href: "https://github.com/Ujhyi/spendlio" },
     ],
     featured: true,
+    notes: "*the live demo runs in the browser on sample data with simulated AI - production deployment in progress",
   },
   {
-    title: "Project Two",
-    year: "2024",
+    title: "Rental marketplace backend",
+    year: "2026",
     blurb:
-      "What it is, why you built it, and what was interesting or hard about it. One or two sentences is plenty.",
-    tech: ["Python", "FastAPI", "Redis"],
-    links: [
-      { label: "Code", href: "https://github.com/yourusername/project-two" },
+      "Microservice backend for a platform for renting apartments, rooms, houses, garages and parking spots. Four independent Spring Boot services, each with its own PostgreSQL database, communicate through Apache Kafka. Landlords publish listings with photos stored in Google Cloud Storage, tenants save favourites, book viewings and chat with landlords in real time over WebSocket (STOMP). Includes JWT auth with refresh tokens, email verification and password reset, appointment confirmation flow, scheduled email reminders and unread-message digests, automatic listing expiry, an admin control panel, Swagger API docs and Docker-based deployment.",
+    tech: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "Spring Data JPA",
+      "PostgreSQL",
+      "Flyway",
+      "Apache Kafka",
+      "WebSocket",
+      "STOMP",
+      "JWT",
+      "Google Cloud Storage",
+      "Swagger",
+      "Docker",
     ],
+    links: [
+      { label: "Code", href: "https://github.com/Ujhyi/dwelio-backend" },
+    ],
+    featured: true,
+    notes: "**my github repo is currently in private state - just ping me to reveal"
   },
   {
-    title: "Project Three",
-    year: "2024",
+    title: "ASP .NET web service providing sorted information about display devices items of an electronic store",
+    year: "2024/2025",
     blurb:
-      "Replace this with a real project. Recruiters read these first — be specific and lead with the outcome.",
-    tech: ["Go", "gRPC", "Kubernetes"],
+      "The goal of this master's thesis was to explore the use of ASP.NET XML Web Services, design and implement a custom solution for a business manager with display technology to easily access organized information. The system provides organized information on display equipment counts, inventory, units sold, enhanced with other possible functionalities.",
+    tech: ["ASP .NET", "XML", "React", "TypeScript", "Vite"],
     links: [
-      { label: "Code", href: "https://github.com/yourusername/project-three" },
+      { label: "Frontend", href: "https://github.com/Ujhyi/react-dp-prod" },
+      { label: "Backend", href: "https://github.com/Ujhyi/MDeg_Project" },
     ],
+    featured: false,
+    notes: "*my github repo is currently in private state - just ping me to reveal",
   },
+  {
+    title: "Solving the real problem of data analytics",
+    year: "2022/2023",
+    blurb:
+      "This bachelor's thesis deals with the prediction of NHL players' salaries based on statistics collected from games.",
+    tech: ["Python", "CRISP-DM", "Machine-Learning"],
+    links: [
+      { label: "Code", href: "https://github.com/Ujhyi/bcProjektGit" },
+    ],
+    featured: false,
+    notes: "*my github repo is currently in private state - just ping me to reveal",
+  }, /*
+  {
+    title: "TBD ...",
+    year: "TBD...",
+    blurb: "TBD...",
+    tech: ["TBD..."],
+    links: [
+      { label: "Live", href: "/not-found" },
+      { label: "Code", href: "/not-found" },
+    ],
+    featured: false,
+    notes: "TBD...",
+  },
+  */
 ];
 
-// Optional: work history. Set to [] to hide the section entirely.
 export const experience: {
   role: string;
+  type: string;
   company: string;
+  country: string;
+  city: string;
   period: string;
   note: string;
 }[] = [
-  {
-    role: "Software Engineer",
-    company: "Company Name",
-    period: "2023 — Present",
-    note: "One line on what you do or shipped here.",
-  },
-  {
-    role: "Junior Developer",
-    company: "Earlier Company",
-    period: "2021 — 2023",
-    note: "One line on your impact or growth.",
-  },
-];
+    {
+      role: "Development and Operations",
+      type: "full-time",
+      company: "Triton Digital",
+      country: "Slovakia",
+      city: "Bratislava",
+      period: "2025 — Present",
+      note: "External engineer for Slovak Telecom, focused on developing and automating OTT TV platform services alongside day-to-day operations & developing AI improvements and PoC.",
+    },
+    {
+      role: "Trainee TV Specialist",
+      type: "part-time",
+      company: "Slovak Telecom",
+      country: "Slovakia",
+      city: "Bratislava",
+      period: "2024 — 2025",
+      note: "Operating and developing OTT TV services — administration, configuration, monitoring, and troubleshooting of production systems, with security and AI integration as part of daily work.",
+    },
+    {
+      role: "ICT Administrator",
+      type: "part-time",
+      company: "Deutsche Telekom IT Solutions",
+      country: "Slovakia",
+      city: "Košice",
+      period: "2023 — 2024",
+      note: "Independently managed change and incident tickets (ITIL-based) to keep services within SLAs across Azure, VMware, and RHEL/CentOS environments.",
+    },
+  ];
+
+export const education: {
+  school: string;
+  degree: string;
+  period: string;
+  note?: string;
+}[] = [
+    {
+      school: "University of Economics in Bratislava",
+      degree: "Ing. Information Management",
+      period: "2023 — 2025",
+      note: "Business Intelligence | Software Engineering | Big Data | UX Design | Simulation Models | Project Management | Linear Programming | Distributed Technologies | Machine Learning | Mobile App Development | Information Systems Management",
+    },
+    {
+      school: "Technical University of Košice",
+      degree: "BSc. Business Informatics",
+      period: "2020 — 2023",
+      note: "Algorithms and Programming | Web Development | Database Systems | Mobile Development | Probability and Mathematical Statistics | Data Analytics | Information System Design",
+    },
+  ];
