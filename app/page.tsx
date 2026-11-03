@@ -2,6 +2,9 @@ import ThemeToggle from "./theme-toggle";
 
 import { profile, about, skills, projects, experience, education } from "./content";
 
+// Must match `basePath` in next.config
+const BASE_PATH = "/portfolio";
+
 const linkClass =
   "text-[var(--ink)] underline decoration-[var(--line)] decoration-2 underline-offset-4 hover:decoration-[var(--accent)] transition-colors";
 
@@ -52,7 +55,7 @@ export default function Home() {
           )}
           {profile.socials.resume && (
             <a
-              href={profile.socials.resume}
+              href={withBase(profile.socials.resume)}
               target="_blank"
               rel="noopener noreferrer"
               className={linkClass}
@@ -232,6 +235,14 @@ export default function Home() {
   );
 }
 
+/* ---------- helpers ---------- */
+
+// Adds the GitHub Pages prefix to links that start with "/".
+// External links (https://..., mailto:...) are returned unchanged.
+function withBase(href: string) {
+  return href.startsWith("/") ? `${BASE_PATH}${href}` : href;
+}
+
 /* ---------- small reusable pieces ---------- */
 
 function Section({
@@ -262,8 +273,8 @@ function TechRow({ tech }: { tech: string[] }) {
   );
 }
 
-function LinkRow({ links }: { links: { label: string; href: string }[] }) {
-  if (!links.length) return null;
+function LinkRow({ links }: { links?: { label: string; href: string }[] }) {
+  if (!links?.length) return null;
   return (
     <div className="mt-4 flex flex-wrap gap-4 font-mono text-sm">
       {links.map((l) => {
@@ -271,7 +282,7 @@ function LinkRow({ links }: { links: { label: string; href: string }[] }) {
         return (
           <a
             key={l.label}
-            href={l.href}
+            href={withBase(l.href)}
             {...(external && { target: "_blank", rel: "noopener noreferrer" })}
             className={linkClass}
           >

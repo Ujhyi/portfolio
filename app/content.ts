@@ -176,7 +176,7 @@ export const education: {
 }[] = [
     {
       school: "University of Economics in Bratislava",
-      degree: "Ing. Information Management",
+      degree: "Master's in Information Management",
       period: "2023 — 2025",
       note: "Business Intelligence | Software Engineering | Big Data | UX Design | Simulation Models | Project Management | Linear Programming | Distributed Technologies | Machine Learning | Mobile App Development | Information Systems Management",
     },
